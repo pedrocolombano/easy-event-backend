@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://db4free.net:3306/easyevent
+    username: ud91b5i9htme
+    password: 4El9YV012l8N
+
+  jpa:
+    hibernate:
+      ddl-auto: update
