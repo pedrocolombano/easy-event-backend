@@ -1,1 +1,5 @@
-
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://p9RsY5j0Qft5:p9RsY5j0Qft5@easy-event-db.ulmqivl.mongodb.net/?retryWrites=true&w=majority
+      database: easy-event
