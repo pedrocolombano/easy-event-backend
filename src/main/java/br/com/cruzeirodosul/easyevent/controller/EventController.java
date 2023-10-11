@@ -3,9 +3,9 @@ package br.com.cruzeirodosul.easyevent.controller;
 import br.com.cruzeirodosul.easyevent.dto.common.EventDto;
 import br.com.cruzeirodosul.easyevent.dto.request.EventRequestDto;
 import br.com.cruzeirodosul.easyevent.entity.Event;
+import br.com.cruzeirodosul.easyevent.mapper.EventMapper;
 import br.com.cruzeirodosul.easyevent.service.EventService;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -18,13 +18,12 @@ import org.springframework.web.bind.annotation.*;
 public class EventController {
 
     private final EventService eventService;
-    private final ModelMapper modelMapper;
+    private final EventMapper eventMapper;
 
     @PostMapping
     public ResponseEntity<EventDto> createNewEvent(@RequestBody EventRequestDto newEventRequest) {
-        Event newEvent = modelMapper.map(newEventRequest, Event.class);
-        Event storedEvent = eventService.saveNewEvent(newEvent);
-        EventDto eventResponse = modelMapper.map(storedEvent, EventDto.class);
+        Event storedEvent = eventService.saveNewEvent(newEventRequest);
+        EventDto eventResponse = eventMapper.from(storedEvent);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(eventResponse);
     }
@@ -32,14 +31,17 @@ public class EventController {
     @GetMapping
     public ResponseEntity<Page<EventDto>> getAllEvents(Pageable pageable) {
         Page<Event> storedEvents = eventService.getAllEvents(pageable);
-        Page<EventDto> eventsResponse = storedEvents.map(element -> modelMapper.map(element, EventDto.class));
+        Page<EventDto> eventsResponse = storedEvents.map(eventMapper::from);
+
         return ResponseEntity.ok().body(eventsResponse);
     }
 
     @GetMapping(path = "/{eventId}")
-    public ResponseEntity<Event> getEventById(@PathVariable(name = "eventId") Long eventId) {
+    public ResponseEntity<EventDto> getEventById(@PathVariable(name = "eventId") Long eventId) {
         Event storedEvent = eventService.getEventById(eventId);
-        return ResponseEntity.ok().body(storedEvent);
+        EventDto eventResponse = eventMapper.from(storedEvent);
+
+        return ResponseEntity.ok().body(eventResponse);
     }
 
 }

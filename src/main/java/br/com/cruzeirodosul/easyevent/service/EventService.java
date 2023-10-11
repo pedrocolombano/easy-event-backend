@@ -1,7 +1,10 @@
 package br.com.cruzeirodosul.easyevent.service;
 
+import br.com.cruzeirodosul.easyevent.dto.request.EventRequestDto;
+import br.com.cruzeirodosul.easyevent.entity.Address;
 import br.com.cruzeirodosul.easyevent.entity.Event;
 import br.com.cruzeirodosul.easyevent.exception.custom.EntityNotFoundException;
+import br.com.cruzeirodosul.easyevent.mapper.EventMapper;
 import br.com.cruzeirodosul.easyevent.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,9 +21,17 @@ import java.util.Optional;
 public class EventService {
 
     private final EventRepository eventRepository;
+    private final AddressService addressService;
+    private final EventMapper eventMapper;
 
-    public Event saveNewEvent(Event newEvent) {
-        return eventRepository.save(newEvent);
+    @Transactional
+    public Event saveNewEvent(EventRequestDto newEventRequest) {
+        Event newEvent = eventMapper.from(newEventRequest);
+        Address storedAddress = addressService.create(newEventRequest.getAddress());
+        newEvent.setAddress(storedAddress);
+        newEvent = eventRepository.save(newEvent);
+
+        return newEvent;
     }
 
     @Transactional(readOnly = true)
