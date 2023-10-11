@@ -27,5 +27,6 @@ public class CreateUserDTO implements Serializable {
     private String phoneNumber;
     private AddressDTO billingAddress;
     private CreateCardDTO paymentCard;
+    private CreatePixDTO pixPayment;
 
 }
