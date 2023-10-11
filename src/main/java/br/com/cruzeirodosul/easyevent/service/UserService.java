@@ -6,9 +6,11 @@ import br.com.cruzeirodosul.easyevent.dto.request.CreateUserDTO;
 import br.com.cruzeirodosul.easyevent.entity.Address;
 import br.com.cruzeirodosul.easyevent.entity.Card;
 import br.com.cruzeirodosul.easyevent.entity.User;
+import br.com.cruzeirodosul.easyevent.exception.custom.EntityNotFoundException;
 import br.com.cruzeirodosul.easyevent.mapper.UserMapper;
 import br.com.cruzeirodosul.easyevent.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +40,14 @@ public class UserService {
     private void setUserPaymentCard(final User user, final CreateCardDTO createCardDTO) {
         final Card paymentCard = cardService.create(createCardDTO);
         user.getPayments().add(paymentCard);
+    }
+
+    @Transactional(readOnly = true)
+    public User findById(final Long id) {
+        final User user = userRepository.findById(id)
+                                        .orElseThrow(() -> new EntityNotFoundException(String.format("User with ID %d not found.", id)));
+        Hibernate.initialize(user.getBillingAddress());
+        return user;
     }
 
 }
