@@ -38,6 +38,9 @@ public class Event implements Serializable {
     @Column(nullable = false)
     private LocalDateTime endDate;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
