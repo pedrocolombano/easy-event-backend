@@ -1,4 +1,4 @@
-package br.com.cruzeirodosul.easyevent.dto;
+package br.com.cruzeirodosul.easyevent.dto.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

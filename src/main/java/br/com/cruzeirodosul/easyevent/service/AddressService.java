@@ -1,6 +1,6 @@
 package br.com.cruzeirodosul.easyevent.service;
 
-import br.com.cruzeirodosul.easyevent.dto.AddressDTO;
+import br.com.cruzeirodosul.easyevent.dto.common.AddressDTO;
 import br.com.cruzeirodosul.easyevent.entity.Address;
 import br.com.cruzeirodosul.easyevent.mapper.AddressMapper;
 import br.com.cruzeirodosul.easyevent.repository.AddressRepository;
