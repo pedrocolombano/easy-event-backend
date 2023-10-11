@@ -28,6 +28,5 @@ public class EventDto implements Serializable {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private EventStatus status;
-    private AddressDTO address;
 
 }
