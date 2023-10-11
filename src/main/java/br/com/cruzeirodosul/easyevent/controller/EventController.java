@@ -37,9 +37,10 @@ public class EventController {
     }
 
     @GetMapping(path = "/{eventId}")
-    public ResponseEntity<Event> getEventById(@PathVariable(name = "eventId") Long eventId) {
+    public ResponseEntity<EventDto> getEventById(@PathVariable(name = "eventId") Long eventId) {
         Event storedEvent = eventService.getEventById(eventId);
-        return ResponseEntity.ok().body(storedEvent);
+        EventDto eventResponse = modelMapper.map(storedEvent, EventDto.class);
+        return ResponseEntity.ok().body(eventResponse);
     }
 
 }
