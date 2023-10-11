@@ -2,6 +2,7 @@ package br.com.cruzeirodosul.easyevent.controller;
 
 import br.com.cruzeirodosul.easyevent.dto.common.EventDto;
 import br.com.cruzeirodosul.easyevent.dto.request.EventRequestDto;
+import br.com.cruzeirodosul.easyevent.dto.response.DetailedEventDto;
 import br.com.cruzeirodosul.easyevent.entity.Event;
 import br.com.cruzeirodosul.easyevent.mapper.EventMapper;
 import br.com.cruzeirodosul.easyevent.service.EventService;
@@ -37,9 +38,9 @@ public class EventController {
     }
 
     @GetMapping(path = "/{eventId}")
-    public ResponseEntity<EventDto> getEventById(@PathVariable(name = "eventId") Long eventId) {
+    public ResponseEntity<DetailedEventDto> getEventById(@PathVariable(name = "eventId") Long eventId) {
         Event storedEvent = eventService.getEventById(eventId);
-        EventDto eventResponse = eventMapper.from(storedEvent);
+        DetailedEventDto eventResponse = eventMapper.toDetailedDto(storedEvent);
 
         return ResponseEntity.ok().body(eventResponse);
     }
