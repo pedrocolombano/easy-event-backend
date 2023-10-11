@@ -14,7 +14,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests((request) -> {
             request.requestMatchers(HttpMethod.POST, "/users").permitAll()
-                    .anyRequest().authenticated();
+                    .anyRequest().permitAll();
         }).csrf(AbstractHttpConfigurer::disable);
         return httpSecurity.build();
     }
