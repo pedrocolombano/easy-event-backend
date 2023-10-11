@@ -1,7 +1,7 @@
 package br.com.cruzeirodosul.easyevent.mapper;
 
 import br.com.cruzeirodosul.easyevent.dto.request.CreateUserDTO;
-import br.com.cruzeirodosul.easyevent.dto.response.UserDTO;
+import br.com.cruzeirodosul.easyevent.dto.common.UserDTO;
 import br.com.cruzeirodosul.easyevent.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

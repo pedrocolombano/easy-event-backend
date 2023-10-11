@@ -1,6 +1,5 @@
-package br.com.cruzeirodosul.easyevent.dto.response;
+package br.com.cruzeirodosul.easyevent.dto.common;
 
-import br.com.cruzeirodosul.easyevent.dto.common.AddressDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

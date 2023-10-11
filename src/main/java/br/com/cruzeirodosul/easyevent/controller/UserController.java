@@ -1,7 +1,7 @@
 package br.com.cruzeirodosul.easyevent.controller;
 
 import br.com.cruzeirodosul.easyevent.dto.request.CreateUserDTO;
-import br.com.cruzeirodosul.easyevent.dto.response.UserDTO;
+import br.com.cruzeirodosul.easyevent.dto.common.UserDTO;
 import br.com.cruzeirodosul.easyevent.entity.User;
 import br.com.cruzeirodosul.easyevent.mapper.UserMapper;
 import br.com.cruzeirodosul.easyevent.service.UserService;
