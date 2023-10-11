@@ -2,6 +2,7 @@ package br.com.cruzeirodosul.easyevent.mapper;
 
 import br.com.cruzeirodosul.easyevent.dto.common.EventDto;
 import br.com.cruzeirodosul.easyevent.dto.request.EventRequestDto;
+import br.com.cruzeirodosul.easyevent.dto.response.DetailedEventDto;
 import br.com.cruzeirodosul.easyevent.entity.Event;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -19,6 +20,10 @@ public class EventMapper {
 
     public EventDto from(final Event event) {
         return modelMapper.map(event, EventDto.class);
+    }
+
+    public DetailedEventDto toDetailedDto(final Event event) {
+        return modelMapper.map(event, DetailedEventDto.class);
     }
 
 }
