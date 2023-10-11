@@ -1,10 +1,15 @@
 package br.com.cruzeirodosul.easyevent.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Getter
@@ -13,7 +18,10 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Event {
+public class Event implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 2302570431445183907L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
