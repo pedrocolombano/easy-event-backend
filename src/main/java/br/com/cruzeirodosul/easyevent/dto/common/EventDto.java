@@ -1,5 +1,6 @@
 package br.com.cruzeirodosul.easyevent.dto.common;
 
+import br.com.cruzeirodosul.easyevent.enumerated.EventStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +27,7 @@ public class EventDto implements Serializable {
     private String description;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+    private EventStatus status;
     private AddressDTO address;
 
 }

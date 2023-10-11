@@ -2,6 +2,7 @@ package br.com.cruzeirodosul.easyevent.dto.request;
 
 import br.com.cruzeirodosul.easyevent.dto.common.AddressDTO;
 import br.com.cruzeirodosul.easyevent.dto.response.UserDTO;
+import br.com.cruzeirodosul.easyevent.enumerated.EventStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -36,6 +37,9 @@ public class EventRequestDto implements Serializable {
     @NotNull
     @Future
     private LocalDateTime endDate;
+
+    @NotBlank
+    private EventStatus status;
 
     @NotNull
     private AddressDTO address;
