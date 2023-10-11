@@ -38,7 +38,7 @@ public class EventRequestDto implements Serializable {
     @Future
     private LocalDateTime endDate;
 
-    @NotBlank
+    @NotNull
     private EventStatus status;
 
     @NotNull
