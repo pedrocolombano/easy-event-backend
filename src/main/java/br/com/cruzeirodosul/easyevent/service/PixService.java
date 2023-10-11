@@ -18,7 +18,6 @@ public class PixService {
     @Transactional
     public Pix create(final CreatePixDTO createPixDTO) {
         final Pix card = pixMapper.from(createPixDTO);
-        card.setDefaultPayment(createPixDTO.isDefaultPayment());
         return pixRepository.save(card);
     }
 

@@ -30,16 +30,15 @@ public class Card extends Payment implements Serializable {
     @Serial
     private static final long serialVersionUID = -308943465161953626L;
 
-    @Column(length = 16, nullable = false)
+    @Column(length = 16)
     private String number;
 
-    @Column(length = 40, nullable = false)
+    @Column(length = 40)
     private String owner;
 
-    @Column(precision = 3, nullable = false)
+    @Column(precision = 3)
     private Integer pin;
 
-    @Column(nullable = false)
     private LocalDate expirationDate;
 
     @Enumerated(EnumType.STRING)

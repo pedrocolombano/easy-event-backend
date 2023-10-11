@@ -18,7 +18,6 @@ public class CardService {
     @Transactional
     public Card create(final CreateCardDTO createCardDTO) {
         final Card card = cardMapper.from(createCardDTO);
-        card.setDefaultPayment(createCardDTO.isDefaultPayment());
         return cardRepository.save(card);
     }
 
