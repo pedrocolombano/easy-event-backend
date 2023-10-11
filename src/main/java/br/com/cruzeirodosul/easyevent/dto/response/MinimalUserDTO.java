@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class MinimalUserDTO implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 799038325252773529L;
+    private static final long serialVersionUID = 1738481893150994916L;
 
     private Long id;
     private String firstName;

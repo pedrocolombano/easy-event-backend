@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 public class DetailedEventDto implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = -7117302822678568749L;
+    private static final long serialVersionUID = 2213428599009092336L;
 
     private Long eventId;
     private String title;
