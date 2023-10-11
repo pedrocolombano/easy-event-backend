@@ -1,6 +1,6 @@
 package br.com.cruzeirodosul.easyevent.mapper;
 
-import br.com.cruzeirodosul.easyevent.dto.AddressDTO;
+import br.com.cruzeirodosul.easyevent.dto.common.AddressDTO;
 import br.com.cruzeirodosul.easyevent.entity.Address;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
