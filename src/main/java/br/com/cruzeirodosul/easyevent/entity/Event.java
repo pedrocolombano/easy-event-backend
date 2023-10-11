@@ -39,6 +39,9 @@ public class Event implements Serializable {
     private LocalDateTime endDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    private Address address;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     @CreatedDate

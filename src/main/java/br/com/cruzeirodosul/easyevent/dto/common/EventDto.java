@@ -26,5 +26,6 @@ public class EventDto implements Serializable {
     private String description;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+    private AddressDTO address;
 
 }
