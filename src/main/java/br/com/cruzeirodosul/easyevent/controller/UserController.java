@@ -2,6 +2,8 @@ package br.com.cruzeirodosul.easyevent.controller;
 
 import br.com.cruzeirodosul.easyevent.dto.request.CreateUserDTO;
 import br.com.cruzeirodosul.easyevent.dto.response.UserDTO;
+import br.com.cruzeirodosul.easyevent.entity.User;
+import br.com.cruzeirodosul.easyevent.mapper.UserMapper;
 import br.com.cruzeirodosul.easyevent.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,16 +21,18 @@ import java.net.URI;
 public class UserController {
 
     private final UserService userService;
+    private final UserMapper userMapper;
 
     @PostMapping
     public ResponseEntity<UserDTO> createUser(@RequestBody CreateUserDTO createUserDTO) {
-        final UserDTO createdUser = userService.create(createUserDTO);
+        final User createdUser = userService.create(createUserDTO);
+        final UserDTO createdUserResponse = userMapper.from(createdUser);
         final URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                                                    .path("/{userId}")
-                                                   .buildAndExpand(createdUser.getId())
+                                                   .buildAndExpand(createdUserResponse.getId())
                                                    .toUri();
 
-        return ResponseEntity.created(uri).body(createdUser);
+        return ResponseEntity.created(uri).body(createdUserResponse);
     }
 
 }

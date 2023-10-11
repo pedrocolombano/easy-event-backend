@@ -17,7 +17,7 @@ public class AddressDTO implements Serializable {
 
     private Long id;
     private String street;
-    private Integer number;
+    private String number;
     private String zipCode;
     private String complement;
     private String city;

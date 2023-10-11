@@ -1,8 +1,10 @@
 package br.com.cruzeirodosul.easyevent.service;
 
+import br.com.cruzeirodosul.easyevent.dto.common.AddressDTO;
+import br.com.cruzeirodosul.easyevent.dto.request.CreateCardDTO;
 import br.com.cruzeirodosul.easyevent.dto.request.CreateUserDTO;
-import br.com.cruzeirodosul.easyevent.dto.response.UserDTO;
 import br.com.cruzeirodosul.easyevent.entity.Address;
+import br.com.cruzeirodosul.easyevent.entity.Card;
 import br.com.cruzeirodosul.easyevent.entity.User;
 import br.com.cruzeirodosul.easyevent.mapper.UserMapper;
 import br.com.cruzeirodosul.easyevent.repository.UserRepository;
@@ -16,17 +18,26 @@ public class UserService {
 
     private final UserMapper userMapper;
     private final AddressService addressService;
+    private final CardService cardService;
     private final UserRepository userRepository;
 
     @Transactional
-    public UserDTO create(final CreateUserDTO createUserDTO) {
+    public User create(final CreateUserDTO createUserDTO) {
         final User user = userMapper.from(createUserDTO);
+        setUserBillingAddress(user, createUserDTO.getBillingAddress());
+        setUserPaymentCard(user, createUserDTO.getPaymentCard());
 
-        Address billingAddress = addressService.create(createUserDTO.getBillingAddress());
+        return userRepository.save(user);
+    }
+
+    private void setUserBillingAddress(final User user, final AddressDTO addressDTO) {
+        final Address billingAddress = addressService.create(addressDTO);
         user.setBillingAddress(billingAddress);
+    }
 
-        userRepository.saveAndFlush(user);
-        return userMapper.from(user);
+    private void setUserPaymentCard(final User user, final CreateCardDTO createCardDTO) {
+        final Card paymentCard = cardService.create(createCardDTO);
+        user.getPayments().add(paymentCard);
     }
 
 }
