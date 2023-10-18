@@ -5,6 +5,7 @@ import br.com.cruzeirodosul.easyevent.dto.common.UserDTO;
 import br.com.cruzeirodosul.easyevent.entity.User;
 import br.com.cruzeirodosul.easyevent.mapper.UserMapper;
 import br.com.cruzeirodosul.easyevent.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class UserController {
     private final UserMapper userMapper;
 
     @PostMapping
-    public ResponseEntity<UserDTO> createUser(@RequestBody CreateUserDTO createUserDTO) {
+    public ResponseEntity<UserDTO> createUser(@RequestBody @Valid CreateUserDTO createUserDTO) {
         final User createdUser = userService.create(createUserDTO);
         final UserDTO createdUserResponse = userMapper.from(createdUser);
         final URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
