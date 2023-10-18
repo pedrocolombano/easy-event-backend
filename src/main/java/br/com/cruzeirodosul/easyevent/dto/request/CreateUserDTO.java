@@ -53,6 +53,5 @@ public class CreateUserDTO implements Serializable {
 
     private AddressDTO billingAddress;
     private CreateCardDTO paymentCard;
-    private CreatePixDTO pixPayment;
 
 }

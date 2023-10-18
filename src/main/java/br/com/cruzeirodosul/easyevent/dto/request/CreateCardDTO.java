@@ -24,6 +24,5 @@ public class CreateCardDTO implements Serializable {
     private LocalDate expirationDate;
     private CardType type;
     private CardBrand brand;
-    private boolean defaultPayment;
 
 }

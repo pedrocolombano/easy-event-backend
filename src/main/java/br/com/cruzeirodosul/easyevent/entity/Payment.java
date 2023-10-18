@@ -34,7 +34,7 @@ public abstract class Payment implements Serializable {
     private Long paymentId;
 
     @Column(nullable = false)
-    private boolean defaultPayment;
+    private boolean defaultPayment = true;
 
     @Override
     public boolean equals(Object o) {
