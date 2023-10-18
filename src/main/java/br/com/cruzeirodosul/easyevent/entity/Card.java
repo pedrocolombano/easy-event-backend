@@ -33,12 +33,13 @@ public class Card extends Payment implements Serializable {
     @Column(length = 16)
     private String number;
 
-    @Column(length = 40)
+    @Column(length = 45)
     private String owner;
 
-    @Column(precision = 3)
-    private Integer pin;
+    @Column(length = 3)
+    private String pin;
 
+   //TODO: replace expiration date with Month and DayOfWeek types
     private LocalDate expirationDate;
 
     @Enumerated(EnumType.STRING)

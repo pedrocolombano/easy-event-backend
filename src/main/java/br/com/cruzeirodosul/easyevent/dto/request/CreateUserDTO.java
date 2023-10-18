@@ -1,6 +1,7 @@
 package br.com.cruzeirodosul.easyevent.dto.request;
 
 import br.com.cruzeirodosul.easyevent.dto.common.AddressDTO;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -51,7 +52,12 @@ public class CreateUserDTO implements Serializable {
     @Size(min = 9, max = 9)
     private String phoneNumber;
 
+    @Valid
+    @NotNull
     private AddressDTO billingAddress;
+
+    @Valid
+    @NotNull
     private CreateCardDTO paymentCard;
 
 }
