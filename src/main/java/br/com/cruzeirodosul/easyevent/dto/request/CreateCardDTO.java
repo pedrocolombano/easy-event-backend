@@ -37,7 +37,7 @@ public class CreateCardDTO implements Serializable {
     private LocalDate expirationDate;
 
     @NotNull
-    private CardType type;
+    private CardType cardType;
 
     @NotNull
     private CardBrand brand;
