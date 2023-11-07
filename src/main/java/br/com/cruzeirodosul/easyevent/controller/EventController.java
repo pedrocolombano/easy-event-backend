@@ -11,7 +11,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,15 +37,15 @@ public class EventController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<EventDto>> getAllEvents(Pageable pageable) {
+    public ResponseEntity<List<EventDto>> getAllEvents(Pageable pageable) {
         Page<Event> storedEvents = eventService.getAllEvents(pageable);
         Page<EventDto> eventsResponse = storedEvents.map(eventMapper::from);
 
-        return ResponseEntity.ok().body(eventsResponse);
+        return ResponseEntity.ok().body(eventsResponse.getContent());
     }
 
     @GetMapping(path = "/{eventId}")
-    public ResponseEntity<DetailedEventDto> getEventById(@PathVariable(name = "eventId") Long eventId) {
+    public ResponseEntity<DetailedEventDto> getEventById(@PathVariable Long eventId) {
         Event storedEvent = eventService.getEventById(eventId);
         DetailedEventDto eventResponse = eventMapper.toDetailedDto(storedEvent);
 

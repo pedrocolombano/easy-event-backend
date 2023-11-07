@@ -3,6 +3,7 @@ package br.com.cruzeirodosul.easyevent.service;
 import br.com.cruzeirodosul.easyevent.dto.request.EventRequestDto;
 import br.com.cruzeirodosul.easyevent.entity.Address;
 import br.com.cruzeirodosul.easyevent.entity.Event;
+import br.com.cruzeirodosul.easyevent.enumerated.EventStatus;
 import br.com.cruzeirodosul.easyevent.exception.custom.EntityNotFoundException;
 import br.com.cruzeirodosul.easyevent.mapper.EventMapper;
 import br.com.cruzeirodosul.easyevent.repository.EventRepository;
@@ -28,9 +29,9 @@ public class EventService {
         Event newEvent = eventMapper.from(newEventRequest);
         Address storedAddress = addressService.create(newEventRequest.getAddress());
         newEvent.setAddress(storedAddress);
-        newEvent = eventRepository.save(newEvent);
+        newEvent.setStatus(EventStatus.PLANNING);
 
-        return newEvent;
+        return eventRepository.save(newEvent);
     }
 
     @Transactional(readOnly = true)
